@@ -27,6 +27,7 @@ public class App {
             System.out.println("7. Print list of groups");
             System.out.println("8. Add message to group");
             System.out.println("9. Print Messages from a group");
+            System.out.println("10. Delete Message from a group");
             System.out.println("-------------------------");
             int task = Integer.parseInt(sc.nextLine());
             switch (task) {
@@ -90,7 +91,17 @@ public class App {
                     break;
                 case 9:
                     printGroups(groups);
+                    System.out.println("Enter group id");
                     groupId = Integer.parseInt(sc.nextLine());
+                    printMessagesFromGroup(groups, groupId);
+                    break;
+                case 10:
+                    printGroups(groups);
+                    System.out.println("Enter group id");
+                    groupId = Integer.parseInt(sc.nextLine());
+                    printMessagesFromGroup(groups, groupId);
+                    messageId = Integer.parseInt(sc.nextLine());
+                    deleteMessageFromGroup(groups, groupId, messageId);
                     printMessagesFromGroup(groups, groupId);
                     break;
             }
@@ -188,5 +199,9 @@ public class App {
             System.out.println(i + " " + info.user.name + " " + info.message);
             i++;
         }
+    }
+
+    static void deleteMessageFromGroup(List<Group> groups, int groupId, int messageId) {
+        groups.get(groupId).messages.remove(messageId);
     }
 }
